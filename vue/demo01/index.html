@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-demo01</title>
+    <script src="../../javascript/vue-v2.6.9.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{ message }}</p>
+        <button v-on:click="reverseMessage">Reverse Message</button>
+        <p>
+            <input v-model="message">
+        </p>
+        <p>
+            <span v-if="seen">Now you see me.</span>
+        </p>
+        <ol>
+            <li v-for="todo in todos">
+                {{ todo.text }}
+            </li>
+        </ol>
+        <ul>
+            <todo-item
+                v-for="item in groceryList"
+                v-bind:todo="item"
+                v-bind:key="item.id">
+            </todo-item>
+        </ul>
+    </div>
+</body>
+<script>
+    Vue.component('todo-item', {
+        props : ['todo'],
+        template : '<li>{{ todo.id }} : {{ todo.text }}</li>'
+    });
+
+    var vm = new Vue({
+        el : '#app',
+        data : {
+            message : 'Hello, Vue!',
+            seen : true,
+            todos : [
+                { text : 'Learn JavaScript' },
+                { text : 'Learn Vue' },
+                { text : 'Build Something Awesome' }
+            ],
+            groceryList : [
+                { id : 0, text : 'Vegetables' },
+                { id : 1, text : 'Cheese' },
+                { id : 2, text : 'Whatever else humans are supposed to eat' }
+            ]
+        },
+        methods : {
+            reverseMessage : function () {
+                this.message = this.message.split('').reverse().join('')
+            }
+        }
+    });
+    // vm.message = 'Vue!';
+    // vm.seen = false;
+    vm.todos.push({ text : 'Push This' });
+</script>
+</html>
