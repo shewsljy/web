@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <script src="../javascript/jquery-3.3.1.min.js"></script>
+    <script src="../javascript/html_jquery.js"></script>
+</head>
+<body>
+    My First JavaScript!
+    <br>
+    <form id="manageAcctForm" method="post" action="www.baidu.com">
+        <input value="pinganAcctVO.accountId" id="manageAcct_accountId"/>
+        <br>
+        <input value="pinganAcctVO.accountNo" id="manageAcct_accountNo"/>
+        <br>
+        <input value="pinganAcctVO.accountType" id="manageAcct_accountType"/>
+        <br>
+        <input value="" id="manageAcct_cmd"/>
+        <br>
+        <input value="" id="manageAcct_returnUrl"/>
+        <br>
+        <input value="" id="manageAcct_sign"/>
+        <br>
+        <input value="立即提交" type="submit"/>
+    </form>
+    <br>
+    <a href="javascript:void(0)" class="btn btn-default btn-sm" id="modifyPhone" onclick="modifyPhone(1)" role="button" style="margin:0; ">修改支付手机号码</a>
+
+    <br>
+    <a href="javascript:void(0)" class="btn btn-default btn-sm" id="makeHtml" onclick="makeHtml()" role="button" style="margin:0; ">jquery生成Html</a>
+    <table>
+        <tr>
+            <th>申请序号</th>
+            <th>认证账户名</th>
+            <th>电子账户</th>
+            <th>归集方式</th>
+            <th>价格属性</th>
+            <th>归集区域</th>
+            <th>总余额</th>
+            <th>可提现余额</th>
+            <th>账户状态</th>
+            <th>操作</th>
+        </tr>
+        <tbody id="data">
+        </tbody>
+    </table>
+</body>
+</html>
