@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>vue-demo01</title>
-    <script src="../../javascript/vue-v2.6.9.js"></script>
+    <script src="../../javascript/vue-v2.6.14.js"></script>
 </head>
 <body>
     <div id="app">
         <p>{{ message }}</p>
-        <button v-on:click="reverseMessage">Reverse Message</button>
+        <button @click="reverseMessage">Reverse Message</button>
         <p>
             <input v-model="message">
         </p>
         <p>
             <span v-if="seen">Now you see me.</span>
+            <span v-else>You can't see me.</span>
         </p>
         <ol>
             <li v-for="todo in todos">
@@ -21,10 +22,9 @@
             </li>
         </ol>
         <ul>
-            <todo-item
-                v-for="item in groceryList"
-                v-bind:todo="item"
-                v-bind:key="item.id">
+            <todo-item v-for="item in groceryList"
+                :todo="item"
+                :key="item.id">
             </todo-item>
         </ul>
     </div>
@@ -35,30 +35,41 @@
         template : '<li>{{ todo.id }} : {{ todo.text }}</li>'
     });
 
-    var vm = new Vue({
+    let myData = {
+        message : 'Hello, Vue!',
+        seen : true,
+        todos : [
+            { text : 'Learn JavaScript' },
+            { text : 'Learn Vue' },
+            { text : 'Build Something Awesome' }
+        ],
+        groceryList : [
+            { id : 0, text : 'Vegetables' },
+            { id : 1, text : 'Cheese' },
+            { id : 2, text : 'Whatever else humans are supposed to eat' }
+        ]
+    };
+    let vm = new Vue({
+        customOption : 'My customOption',
         el : '#app',
-        data : {
-            message : 'Hello, Vue!',
-            seen : true,
-            todos : [
-                { text : 'Learn JavaScript' },
-                { text : 'Learn Vue' },
-                { text : 'Build Something Awesome' }
-            ],
-            groceryList : [
-                { id : 0, text : 'Vegetables' },
-                { id : 1, text : 'Cheese' },
-                { id : 2, text : 'Whatever else humans are supposed to eat' }
-            ]
-        },
+        data : myData,
         methods : {
             reverseMessage : function () {
                 this.message = this.message.split('').reverse().join('')
             }
+        },
+        created : function () {
+            console.log('message is : ' + this.message);
+            console.log('$options.customOption is : ' + this.$options.customOption);
         }
     });
     // vm.message = 'Vue!';
     // vm.seen = false;
     vm.todos.push({ text : 'Push This' });
+    if (vm.$data === myData) {
+        console.log('vm.$data === myData');
+    }else {
+        console.log('vm.$data !== myData');
+    }
 </script>
 </html>
