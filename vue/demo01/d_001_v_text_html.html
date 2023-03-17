@@ -1,0 +1,34 @@
+ <!-- vue.js 内容渲染指令 -->
+    <!-- 1、 v-text 会把元素内的文本替换掉，基本不用
+    2、 {{ }} 插值表达式，只是内容的占位符，不会覆盖原有内容l，也可以进行简单的
+    3、 v-html 会将文本转渲染化为HTML样式 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-demo01--内容渲染指令</title>
+    <script src="../../javascript/vue-v2.6.14.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ message }} 反转：{{ message.split('').reverse().join('') }}
+        <hr>
+        {{ message }}
+        <p v-text="message"></p>
+        <p>This is p {{ message}} </p>
+        <p v-text="stylehr"></p>
+        <div v-html="stylehr"></div>
+    </div>
+</body>
+<script>
+    let myData = {
+        message : 'Hello, Vue!',
+        stylehr : '<hr>'
+    };
+    let vm = new Vue({
+        customOption : 'My customOption',
+        el : '#app',
+        data : myData
+    });
+</script>
+</html>

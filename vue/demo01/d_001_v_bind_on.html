@@ -1,0 +1,51 @@
+ <!-- vue.js 属性绑定指令 -->
+    <!-- 1、 v-bind 会把元素属性动态动态，可以进行简单的运算,简写为 : 
+    2、 v-on 进行事件动态绑定，
+    可替代bom原型的 onclick oninput onkeyup 等为 v-on:click v-on:input v-on:keyup
+    简写为 @，(简写为@click @input @keyup)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-demo01--内容渲染指令</title>
+    <script src="../../javascript/vue-v2.6.14.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" placeholder="xxxx">
+        <hr>
+        <input type="text" v-bind:placeholder="tips">
+        <hr>
+        <input type="text" :placeholder="tips">
+        <hr>
+        <p :title="'box' + indexp">box[indexp]</p>
+        <hr>
+        {{ count }}
+        <p></p>
+        <button v-on:click="add(2)">count+2</button>
+        <hr>
+        <button onclick oninput onkeyup ="sub">count-1</button>
+    </div>
+</body>
+<script>
+    let myData = {
+        tips : 'Hello, Vue!',
+        indexp : 3,
+        count : 0
+    };
+    let vm = new Vue({
+        customOption : 'My customOption',
+        el : '#app',
+        data : myData,
+        methods : {
+            add(n) {
+                this.count += n;
+            },
+            sub() {
+                this.count -= 1;
+            }
+        }
+    });
+</script>
+</html>
